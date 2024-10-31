@@ -1,9 +1,9 @@
 package app.revanced.bilibili.account.model
 
 
-import app.revanced.bilibili.model.serializer.SecondsAsDate
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import app.revanced.bilibili.model.serializer.SecondsAsDate
 import java.util.Date
 
 @Serializable
@@ -11,11 +11,18 @@ class BlacklistInfo(
     @SerialName("uid")
     val uid: Long = 0,
     @SerialName("is_blacklist")
-    val isBlacklist: Boolean = false,
+    var isBlacklist: Boolean = false,
     @SerialName("is_whitelist")
-    val isWhitelist: Boolean = false,
+    var isWhitelist: Boolean = false,
     @SerialName("status")
-    val status: Int = 0, // 0，正常，1 白名单，2 黑名单
+    var status: Int = 0,
     @SerialName("ban_until")
-    val banUntil: SecondsAsDate = Date(),
-)
+    var banUntil: SecondsAsDate? = null
+) {
+    init {
+        isBlacklist = false
+        isWhitelist = false
+        status = 0
+        banUntil = null
+    }
+}
